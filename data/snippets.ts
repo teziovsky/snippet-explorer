@@ -1,17 +1,25 @@
+import { Icons, IconName as RaycastIconName } from "@raycast/icons";
 import { nanoid } from "nanoid";
-import { GitHubIcon, SnippetsIcon } from "../components/Icons";
-import {
-  CalendarIcon,
-  CodeBlockIcon,
-  CoinsIcon,
-  CommandSymbolIcon,
-  KeyboardIcon,
-  LowercaseIcon,
-  ShuffleIcon,
-  SpeechBubbleIcon,
-} from "@raycast/icons";
 
-const arrows = [
+export type IconName = RaycastIconName | "github";
+
+export type Snippet = {
+  id: string;
+  text: string;
+  name: string;
+  keyword: string;
+  type: string;
+};
+
+export type Category = {
+  name: string;
+  slug: string;
+  snippets: Snippet[];
+  icon: IconName;
+  gridCols: number;
+};
+
+const arrows: Snippet[] = [
   {
     id: nanoid(),
     text: "←",
@@ -112,7 +120,7 @@ const arrows = [
   },
 ];
 
-const bulletsAndStars = [
+const bulletsAndStars: Snippet[] = [
   {
     id: nanoid(),
     text: "·",
@@ -206,7 +214,7 @@ const bulletsAndStars = [
   },
 ];
 
-const technical = [
+const technical: Snippet[] = [
   {
     id: nanoid(),
     text: "⌘",
@@ -279,7 +287,7 @@ const technical = [
   },
 ];
 
-const currency = [
+const currency: Snippet[] = [
   {
     id: nanoid(),
     text: "£",
@@ -373,7 +381,7 @@ const currency = [
   },
 ];
 
-const maths = [
+const maths: Snippet[] = [
   {
     id: nanoid(),
     text: "×",
@@ -474,7 +482,7 @@ const maths = [
   },
 ];
 
-const symbols = [
+const symbols: Snippet[] = [
   {
     id: nanoid(),
     text: "®",
@@ -548,7 +556,7 @@ const symbols = [
   },
 ];
 
-const feedback = [
+const feedback: Snippet[] = [
   {
     name: "Feedback Thanks",
     id: nanoid(),
@@ -578,7 +586,7 @@ I'm thrilled about the opportunity. Unfortunately, I'm currently not available t
   },
 ];
 
-const coding = [
+const coding: Snippet[] = [
   {
     name: "Console Log",
     id: nanoid(),
@@ -736,7 +744,7 @@ const coding = [
   },
 ];
 
-const github = [
+const github: Snippet[] = [
   {
     id: nanoid(),
     name: "GitHub Issue Template",
@@ -798,7 +806,7 @@ Fixes #
   {
     id: nanoid(),
     name: "GitHub Note",
-    text: `> **Note**
+    text: `> [!NOTE]
 > {cursor}`,
     keyword: "gh-note",
     type: "template",
@@ -806,14 +814,14 @@ Fixes #
   {
     id: nanoid(),
     name: "GitHub Warning",
-    text: `> **Warning**
+    text: `> [!WARNING]
 > {cursor}`,
     keyword: "gh-warning",
     type: "template",
   },
 ];
 
-const spelling = [
+const spelling: Snippet[] = [
   {
     id: nanoid(),
     name: "Apparantly → Apparently",
@@ -858,7 +866,7 @@ const spelling = [
   },
 ];
 
-const unicodes = [
+const unicodes: Snippet[] = [
   {
     id: nanoid(),
     name: "Shrug",
@@ -952,7 +960,7 @@ const unicodes = [
   },
 ];
 
-const date = [
+const date: Snippet[] = [
   {
     id: nanoid(),
     name: "Current Date",
@@ -1011,7 +1019,7 @@ const date = [
   },
 ];
 
-const misc = [
+const misc: Snippet[] = [
   {
     id: nanoid(),
     name: "Email Address",
@@ -1064,19 +1072,19 @@ const misc = [
   {
     id: nanoid(),
     name: "Weekly Standup Template",
-    text: `Good morning ✨ 
+    text: `Good morning ✨
 
 *Last week:*
 - {cursor}
 
 *Didn't do:*
-- 
+-
 
 *This week:*
-- 
+-
 
 *Blockers:*
-- 
+-
 
 *Highlights:*
 - `,
@@ -1085,75 +1093,75 @@ const misc = [
   },
 ];
 
-export const snippetGroups = [
+export const snippetGroups: Category[] = [
   {
     name: "Symbols",
     slug: "/symbols",
     gridCols: 4,
     snippets: [...technical, ...bulletsAndStars, ...maths, ...symbols],
-    icon: CommandSymbolIcon,
+    icon: "command-symbol",
   },
   {
     name: "Arrows",
     slug: "/arrows",
     gridCols: 6,
     snippets: arrows,
-    icon: ShuffleIcon,
+    icon: "shuffle",
   },
   {
     name: "Unicode",
     slug: "/unicode",
     gridCols: 4,
     snippets: unicodes,
-    icon: KeyboardIcon,
+    icon: "keyboard",
   },
   {
     name: "Date & Time",
     slug: "/dates",
     gridCols: 3,
     snippets: date,
-    icon: CalendarIcon,
+    icon: "calendar",
   },
   {
     name: "Miscellaneous",
     slug: "/misc",
     gridCols: 2,
     snippets: misc,
-    icon: SnippetsIcon,
+    icon: "snippets",
   },
   {
     name: "Spelling",
     slug: "/spelling",
     gridCols: 4,
     snippets: spelling,
-    icon: LowercaseIcon,
+    icon: "lowercase",
   },
   {
     name: "Currency",
     slug: "/currency",
     gridCols: 4,
     snippets: currency,
-    icon: CoinsIcon,
+    icon: "coins",
   },
   {
     name: "Coding",
     slug: "/coding",
     gridCols: 3,
     snippets: coding,
-    icon: CodeBlockIcon,
+    icon: "code-block",
   },
   {
     name: "Feedback",
     slug: "/feedback",
     gridCols: 3,
     snippets: feedback,
-    icon: SpeechBubbleIcon,
+    icon: "speech-bubble",
   },
   {
     name: "GitHub",
     slug: "/github",
     gridCols: 2,
     snippets: github,
-    icon: GitHubIcon,
+    icon: "github",
   },
 ];
